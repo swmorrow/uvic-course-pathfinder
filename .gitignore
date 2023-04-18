@@ -7,7 +7,7 @@
 package-lock.json
 **/*.bun
 
-src/json/*
+src/json/*.json
 
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 

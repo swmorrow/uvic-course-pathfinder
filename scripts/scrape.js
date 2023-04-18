@@ -29,7 +29,8 @@ function parsePreCorequisites(coursePostreqData, course, preCoreqList) {
             const coursePostreq = {
                 "subject": course.subject,
                 "code":    course.code,
-                "pid":     course.pid
+                "pid":     course.pid,
+                "title":   course.title
             };
 
             courseName in coursePostreqData ? coursePostreqData[courseName].push(coursePostreq) : coursePostreqData[courseName] = [coursePostreq];
@@ -67,11 +68,17 @@ const courseCatalogJson = await fetch(VIKELABS_URL + CURRENT_TERM).then((respons
 fs.writeFileSync("course-catalog.json", JSON.stringify(courseCatalogJson));
 
 // // Fetch detailed course data from catalog entries
+console.log("Fetching detailed course info...");
 const courseData = await getCourseData(courseCatalogJson);
 fs.writeFileSync("course-data.json", JSON.stringify(courseData));
 
 // const courseData = JSON.parse(fs.readFileSync("course-data.json"))
 
 // Now that we have the detailed course data, we can classify postreqs
+console.log("Classifying postreqs...");
 const coursePostreqs = classifyAllCoursePostreqs(courseData);
 fs.writeFileSync("course-postreqs.json", JSON.stringify(coursePostreqs));
+
+const metadata = { "scrapedAt": new Date().toISOString(), };
+console.log("Finished at " + metadata.scrapedAt + "!");
+fs.writeFileSync("metadata.json", JSON.stringify(metadata));
