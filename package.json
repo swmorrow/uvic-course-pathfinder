@@ -2,8 +2,8 @@
   "name": "uvic-course-pathfinder",
   "version": "0.1.79",
   "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "react": "latest",
+    "react-dom": "latest",
     "web-vitals": "^3.0.3"
   },
   "eslintConfig": {
@@ -11,8 +11,15 @@
       "react-app"
     ]
   },
+  "scripts": {
+    "start": "bun dev",
+    "scrape": "cd src/json/ && bun run ../../scripts/scrape.js"
+  },
   "devDependencies": {
-    "typescript": "latest",
-    "react-refresh": "0.10.0"
+    "@types/react": "^18.0.15",
+    "@types/react-dom": "^18.0.6",
+    "bun-types": "^0.5.8",
+    "react-refresh": "0.10.0",
+    "typescript": "latest"
   }
 }
