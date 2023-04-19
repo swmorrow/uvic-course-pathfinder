@@ -1,4 +1,4 @@
-import fs from "node:fs";
+// import fs from "node:fs";
 
 // Shoutouts to VikeLabs for having this awesome API!!!
 const VIKELABS_URL = "https://courseup.vikelabs.ca/api/courses/";
@@ -62,23 +62,32 @@ function classifyAllCoursePostreqs(courseData) {
     return coursePostreqData;
 }
 
+const startTime = performance.now();
+
 // Get catalog info for the current term
 console.log("Fetching course catalog info...");
 const courseCatalogJson = await fetch(VIKELABS_URL + CURRENT_TERM).then((response) => response.json());
-fs.writeFileSync("course-catalog.json", JSON.stringify(courseCatalogJson));
+Bun.write("course-catalog.json", JSON.stringify(courseCatalogJson))
+// fs.writeFileSync("course-catalog.json", JSON.stringify(courseCatalogJson));
 
 // // Fetch detailed course data from catalog entries
 console.log("Fetching detailed course info...");
 const courseData = await getCourseData(courseCatalogJson);
-fs.writeFileSync("course-data.json", JSON.stringify(courseData));
+// fs.writeFileSync("course-data.json", JSON.stringify(courseData));
+Bun.write("course-data.json", JSON.stringify(courseData))
 
 // const courseData = JSON.parse(fs.readFileSync("course-data.json"))
 
 // Now that we have the detailed course data, we can classify postreqs
 console.log("Classifying postreqs...");
 const coursePostreqs = classifyAllCoursePostreqs(courseData);
-fs.writeFileSync("course-postreqs.json", JSON.stringify(coursePostreqs));
+// fs.writeFileSync("course-postreqs.json", JSON.stringify(coursePostreqs));
+Bun.write("course-postreqs.json", JSON.stringify(coursePostreqs))
 
 const metadata = { "scrapedAt": new Date().toISOString(), };
+// fs.writeFileSync("metadata.json", JSON.stringify(metadata));
+Bun.write("metadata.json", JSON.stringify(metadata))
+
 console.log("Finished at " + metadata.scrapedAt + "!");
-fs.writeFileSync("metadata.json", JSON.stringify(metadata));
+
+console.log("Total time: " + (performance.now() - startTime) + "ms")

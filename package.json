@@ -2,6 +2,8 @@
   "name": "uvic-course-pathfinder",
   "version": "0.1.79",
   "dependencies": {
+    "@types/dagre": "^0.7.48",
+    "dagre": "^0.8.5",
     "react": "latest",
     "react-dom": "latest",
     "react-router-dom": "^6.10.0",

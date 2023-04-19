@@ -1,7 +1,6 @@
-import React from "react";
+import { lazy, StrictMode } from "react";
 import ReactDOM from "react-dom/client";
-import Root from "./routes/root";
-import ErrorPage from "./error-page";
+
 import reportWebVitals from "./reportWebVitals";
 
 import {
@@ -9,8 +8,11 @@ import {
   RouterProvider,
 } from "react-router-dom";
 
+const Root = lazy(() => import("./routes/root"));
+const ErrorPage = lazy(() => import("./error-page"));
+const CourseFlow = lazy(() => import("./routes/courseflow"));
+
 import "./index.css";
-import CourseFlow from "./routes/courseflow";
 
 const router = createBrowserRouter([
   {
@@ -27,9 +29,9 @@ const router = createBrowserRouter([
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  <React.StrictMode>
+  <StrictMode>
     <RouterProvider router={router} />
-  </React.StrictMode>
+  </StrictMode>
 );
 
 reportWebVitals(console.log);

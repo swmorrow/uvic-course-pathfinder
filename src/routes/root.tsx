@@ -1,6 +1,6 @@
 import "../App.css";
 
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 
 import { Course } from "../json/course";
@@ -58,13 +58,17 @@ export default function Root() {
             ></div>
           </form>
         </div>
-        <nav>
-          <List input={searchInput}/>
-        </nav>
+        <Suspense fallback={<div>Loading...</div>}>
+          <nav>
+            <List input={searchInput}/>
+          </nav>
+        </Suspense>
       </div>
-      <div id="detail">
-        <Outlet />
-      </div>
+      <Suspense fallback={<div>Loading...</div>}>
+        <div id="detail">
+          <Outlet />
+        </div>
+      </Suspense>
     </>
   );
   // return (
