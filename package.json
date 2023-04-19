@@ -4,6 +4,8 @@
   "dependencies": {
     "react": "latest",
     "react-dom": "latest",
+    "react-router-dom": "^6.10.0",
+    "reactflow": "^11.7.0",
     "web-vitals": "^3.0.3"
   },
   "eslintConfig": {

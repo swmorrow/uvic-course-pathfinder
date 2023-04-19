@@ -1,40 +1,49 @@
-import { useState } from 'react'
-import { CoursePostreqs } from "../json/course";
-import _coursePostreqs from "../json/course-postreqs.json";
+import { Link } from "react-router-dom";
 
-const coursePostreqs = _coursePostreqs as CoursePostreqs;
+import { Course } from "../json/course";
+import _courseCatalog from "../json/course-catalog.json";
 
-function List(props: any): JSX.Element {
-  const filteredData = Object.keys(coursePostreqs).filter((el) => {
-    //if no input the return the original
+const courseCatalog = _courseCatalog as Course[];
+
+export default function List(props: any): JSX.Element {
+  const filteredData = courseCatalog.filter((course: Course) => {
+    // if no input, return the original
     if (props.input === '') {
-      return el;
+      return course;
     }
-    //return the item which contains the user input
-    else {
-      return el.toUpperCase().includes(props.input)
-    }
-  })
+    
+    // return the item which contains the user input
+    return (course.subject + course.code).includes(props.input);
+  });
 
   return (
-    <table>
-      <tr>
-        <th>Course</th>
-        <th>Postreqs</th> 
-      </tr>
-        {filteredData.map((courseName) => (
-          <tr>
-            <td>{courseName}</td>
-            <td>{coursePostreqs[courseName].map((postreq) => {
-              return <ul>
-                {postreq.subject + postreq.code + ": " + postreq.title}
-              </ul>
-            })}
-            </td>
-          </tr>
-        ))}
-    </table>
-  )
-}
+    <ul>
+      {filteredData.map((course) => {[]
+        return <li key={course.subject + course.code}>
+          <Link to={"courses/" + course.subject + course.code}>{course.subject + course.code + ": " + course.title}</Link>
+        </li>;
+      })}
+    </ul>
+  );
 
-export default List
+  // return (
+  //   <table>
+  //     <tr>
+  //       <th>Course</th>
+  //       <th>Postreqs</th> 
+  //     </tr>
+  //       {filteredData.map((courseName) => (
+  //         <tr>
+  //           {/* <td><Button text={courseName} setFlow={setFlow}/></td> */}
+  //           <td><button onClick={() => setFlow(courseName)}>{courseName}</button></td>
+  //           <td>{coursePostreqs[courseName].map((postreq) => {
+  //             return <ul>
+  //               {postreq.subject + postreq.code + ": " + postreq.title}
+  //             </ul>
+  //           })}
+  //           </td>
+  //         </tr>
+  //       ))}
+  //   </table>
+  // );
+}
