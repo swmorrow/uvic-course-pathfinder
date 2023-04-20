@@ -7,9 +7,9 @@ const courseCatalog = _courseCatalog as Course[];
 
 export default function List(props: any): JSX.Element {
   const filteredData = courseCatalog.filter((course: Course) => {
-    // if no input, return the original
+    // if no input, don't return anything
     if (props.input === '') {
-      return course;
+      return false;
     }
     
     // return the item which contains the user input
@@ -25,25 +25,4 @@ export default function List(props: any): JSX.Element {
       })}
     </ul>
   );
-
-  // return (
-  //   <table>
-  //     <tr>
-  //       <th>Course</th>
-  //       <th>Postreqs</th> 
-  //     </tr>
-  //       {filteredData.map((courseName) => (
-  //         <tr>
-  //           {/* <td><Button text={courseName} setFlow={setFlow}/></td> */}
-  //           <td><button onClick={() => setFlow(courseName)}>{courseName}</button></td>
-  //           <td>{coursePostreqs[courseName].map((postreq) => {
-  //             return <ul>
-  //               {postreq.subject + postreq.code + ": " + postreq.title}
-  //             </ul>
-  //           })}
-  //           </td>
-  //         </tr>
-  //       ))}
-  //   </table>
-  // );
 }

@@ -8,9 +8,9 @@ import {
   RouterProvider,
 } from "react-router-dom";
 
-const Root = lazy(() => import("./routes/root"));
-const ErrorPage = lazy(() => import("./error-page"));
-const CourseFlow = lazy(() => import("./routes/courseflow"));
+import Root from "./routes/root";
+import ErrorPage from "./error-page";
+const LayoutFlow = lazy(() => import("./routes/course"));
 
 import "./index.css";
 
@@ -21,8 +21,12 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
+        path: "/courses/",
+        element: <div>Search for a course to see what it is a pre- or co-requisite of!</div>,
+      },
+      {
         path: "/courses/:courseName",
-        element: <CourseFlow />,
+        element: <LayoutFlow />,
       },
     ],
   },

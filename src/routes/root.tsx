@@ -1,21 +1,10 @@
 import "../App.css";
+import "../index.css";
 
 import { Suspense, useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 
-import { Course } from "../json/course";
-import { CoursePostreqs } from "../json/course";
-import _coursePostreqs from "../json/course-postreqs.json";
-import { Metadata } from "../json/metadata";
-import _metadata from "../json/metadata.json";
-
 import List from "../components/list";
-
-const coursePostreqs = _coursePostreqs as CoursePostreqs;
-const metadata = {
-  ..._metadata,
-  scrapedAt: new Date(_metadata.scrapedAt),
-} as Metadata;
 
 export default function Root() {
   const [searchInput, setSearchInput] = useState("");
@@ -58,30 +47,15 @@ export default function Root() {
             ></div>
           </form>
         </div>
-        <Suspense fallback={<div>Loading...</div>}>
-          <nav>
-            <List input={searchInput}/>
-          </nav>
+        <nav>
+          <List input={searchInput}/>
+        </nav>
+      </div>
+      <div id="detail">
+        <Suspense fallback={<div className="loading">Loading...</div>}>
+          <Outlet />
         </Suspense>
       </div>
-      <Suspense fallback={<div>Loading...</div>}>
-        <div id="detail">
-          <Outlet />
-        </div>
-      </Suspense>
     </>
   );
-  // return (
-  //   <div className="App" role="main">
-  //     <article className="App-article">
-  //       <h1>React Search</h1>
-  //       <input
-  //         type="text"
-  //         placeholder="Search here"
-  //         onChange={handleSearch}
-  //         value={searchInput} />
-  //       <List input={searchInput}/>
-  //     </article>
-  //   </div>
-  // );
 }
