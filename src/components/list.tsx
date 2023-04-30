@@ -7,9 +7,9 @@ const courseCatalog = _courseCatalog as Course[];
 
 export default function List(props: any): JSX.Element {
   const filteredData = courseCatalog.filter((course: Course) => {
-    // if no input, don't return anything
+    // if no input, return unaltered course
     if (props.input === '') {
-      return false;
+      return course;
     }
     
     // return the item which contains the user input

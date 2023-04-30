@@ -1,4 +1,4 @@
-import { lazy, StrictMode } from "react";
+import { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
 
 import reportWebVitals from "./reportWebVitals";
@@ -10,7 +10,7 @@ import {
 
 import Root from "./routes/root";
 import ErrorPage from "./error-page";
-const LayoutFlow = lazy(() => import("./routes/course"));
+import LayoutFlow from "./routes/course";
 
 import "./index.css";
 
@@ -22,7 +22,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/courses/",
-        element: <div>Search for a course to see what it is a pre- or co-requisite of!</div>,
+        element: <div>Search for a course to see its course pathway!</div>,
       },
       {
         path: "/courses/:courseName",

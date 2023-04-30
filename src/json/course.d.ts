@@ -19,6 +19,7 @@ export interface CourseDetails {
       chosen: string;
       value:
         | string
+        | string[]
         | {
             max: string;
             min: string;
@@ -50,12 +51,22 @@ export interface CourseDetails {
 }
 
 // credit: https://github.com/VikeLabs/courseup
+export interface KualiCourse {
+  pid?: string;
+  code: string;
+  subject: string;
+}
+
 export interface Course {
     pid:     string;
     title:   string;
     subject: string;
     code:    string;
 }  
+
+export interface CourseData {
+  [index: string]: CourseDetails;
+}
 
 export interface CoursePostreqs {
     [index: string]: Course[];

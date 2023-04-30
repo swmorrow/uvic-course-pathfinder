@@ -398,3 +398,22 @@ i {
 .layoutflow .controls button:first-child {
   margin-right: 10px;
 }
+
+.course-node {
+  height: 50px;
+  border: 1px solid #eee;
+  padding: 5px;
+  border-radius: 5px;
+  background: white;
+}
+
+.course-node a {
+  display: block;
+  color: #777;
+  font-size: 12px;
+}
+
+.course-node label {
+  display: block;
+  text-align: center;
+}

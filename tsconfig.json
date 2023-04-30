@@ -15,9 +15,6 @@
     "forceConsistentCasingInFileNames": true,
     "allowJs": true,
     "outDir": "build"
-    // "types": [
-    //   "bun-types" // add Bun global
-    // ]
   },
   "include": ["./src/**/*"]
 }

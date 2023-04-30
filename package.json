@@ -4,8 +4,10 @@
   "dependencies": {
     "@types/dagre": "^0.7.48",
     "dagre": "^0.8.5",
+    "lightningcss": "^1.20.0",
+    "lmdb": "^2.7.11",
     "react": "latest",
-    "react-dom": "latest",
+    "react-dom": "^18.2.0",
     "react-router-dom": "^6.10.0",
     "reactflow": "^11.7.0",
     "web-vitals": "^3.0.3"
@@ -17,12 +19,17 @@
   },
   "scripts": {
     "start": "bun dev",
-    "scrape": "cd src/json/ && bun run ../../scripts/scrape.js"
+    "scrape": "cd src/json/ && bun run ../../scripts/scrape.js",
+    "build": "rm -rf dist/ && parcel build public/index.html"
   },
   "devDependencies": {
+    "@parcel/packager-raw-url": "^2.8.3",
+    "@parcel/transformer-webmanifest": "^2.8.3",
     "@types/react": "^18.0.15",
     "@types/react-dom": "^18.0.6",
     "bun-types": "^0.5.8",
+    "parcel": "^2.8.3",
+    "quicktype": "^23.0.19",
     "react-refresh": "0.10.0",
     "typescript": "latest"
   }

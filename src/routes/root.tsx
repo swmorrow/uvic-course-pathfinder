@@ -1,4 +1,3 @@
-import "../App.css";
 import "../index.css";
 
 import { Suspense, useState } from "react";
@@ -24,7 +23,7 @@ export default function Root() {
   return (
     <>
       <div id="sidebar">
-        <h1>React Router Contacts</h1>
+        <h1>Search for a course to see what it may be a pre- or co-requisite of!</h1>
         <div>
           <form id="search-form" role="search" onSubmit={handleSubmit}>
             <input
