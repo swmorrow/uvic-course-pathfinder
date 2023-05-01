@@ -188,18 +188,24 @@ export default function LayoutFlow() {
           <Background  color="#ccc" variant={BackgroundVariant.Dots} />
         </ReactFlow>
       <div className="controls">
-        <div>{nodes.length >= MAX_NODES ? "Max num. nodes exceeded! Some course paths may end prematurely." : (nodes.length >= NODES_WARNING ? "Warning: high node count! Graph may be difficult to read (as you can probably see)" : "")}</div>
-        <input
-          placeholder="Num. Layers (default 1)"
-          type="number"
-          pattern="[1-9]"
-          value={maxLayers}
-          onChange={(e) =>
-            setNumLayers((v) => (e.target.validity.valid ? e.target.value : v))
-          }
-        />
-        <button onClick={() => onLayout('TB')}>vertical layout</button>
-        <button onClick={() => onLayout('LR')}>horizontal layout</button>
+        <div>
+          <p>{nodes.length >= MAX_NODES ? "Max num. nodes exceeded!" : (nodes.length >= NODES_WARNING ? "Warning: high node count!" : "\n")}</p>
+          <input
+            placeholder="Num. Layers (default 1)"
+            type="number"
+            pattern="[1-9]"
+            value={maxLayers}
+            onChange={(e) =>
+              setNumLayers((v) => (e.target.validity.valid ? e.target.value : v))
+            }
+          />
+        </div>
+        <div>
+          <button onClick={() => onLayout('TB')}>vertical layout</button> 
+        </div>
+        <div>
+          <button onClick={() => onLayout('LR')}>horizontal layout</button>
+        </div>
       </div>
     </div>
   );
